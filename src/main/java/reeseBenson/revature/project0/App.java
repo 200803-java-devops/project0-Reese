@@ -17,21 +17,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        try {
-            ServerSocket server = new ServerSocket(8080);
-            Socket socket = server.accept();
-            InputStream inputStream = socket.getInputStream();
-            InputStreamReader isr = new InputStreamReader(inputStream);
-            BufferedReader reader = new BufferedReader(isr);
-            while (reader.ready()) {
-                System.out.println(reader.readLine());
-            }
-
-            OutputStream outputStream = socket.getOutputStream();
-            PrintStream printStream = new PrintStream(outputStream);
-            printStream.println("Hello");
-        } catch (IOException e) {
-            System.err.println("Failed to create server");
-        }
+      Game game = new Game();
+      game.start();
     }
 }
