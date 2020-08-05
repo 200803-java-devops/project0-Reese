@@ -1,8 +1,8 @@
 package reeseBenson.revature.project0;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.util.ArrayList;
 
 public class Game {
     MyIO io;
@@ -24,7 +24,7 @@ public class Game {
                     create();
                     break;
                 case 2:
-                    System.out.println("**TODO**");
+                    load();
                     break;
                 case 3:
                     System.out.println("\nExiting game");
@@ -75,7 +75,7 @@ public class Game {
     }
 
     public void save(){
-        System.out.println("Saving!!");
+        System.out.println("Saving...");
         File file = new File("reeseBenson.revature.project0\\.saves\\save-" + player.getName());
         FileWriter fileWriter = null;
         try {
@@ -99,4 +99,18 @@ public class Game {
         }
     }
 
+    public void load(){
+        File saveDirectory = new File("reeseBenson.revature.project0\\.saves");
+        ArrayList<File> files = new ArrayList<File>();
+        ArrayList<String> characters = new ArrayList<String>();
+        for(File file : saveDirectory.listFiles()){
+            if(file.getName().contains("save-")){
+                files.add(file);
+                characters.add(file.getName().substring(5));
+            }
+        }
+        
+        player = new Player(io.readFile(files.get(io.Choice("What Character would you like to Play?", characters)-1)));
+        play();
+    }
 }

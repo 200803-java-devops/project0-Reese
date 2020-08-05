@@ -1,7 +1,14 @@
 package reeseBenson.revature.project0;
 
 import java.io.BufferedReader;
+import java.io.CharArrayReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.CharBuffer;
 import java.util.ArrayList;
 
 public class MyIO {
@@ -85,6 +92,20 @@ public class MyIO {
             }else{
                 ok = true;
             }
+        }
+        return result;
+    }
+
+    public String readFile(File file){
+        String result="";
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+            while(reader.ready()){
+                result+=reader.readLine() + "\n";
+            }
+            reader.close();
+        } catch (Exception e) {
+           System.err.println("Error opening file to read" + e.getMessage());
         }
         return result;
     }

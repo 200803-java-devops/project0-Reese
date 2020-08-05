@@ -13,6 +13,21 @@ public class Player {
         monsters = new ArrayList<Monster>();
     }
 
+    Player(String saveData){
+        String [] data = saveData.split("\n");
+        name = data[0];
+        face = data[1];
+        monsters = new ArrayList<Monster>();
+        Integer.parseInt(data[2]);
+        for(int i = 3; i<data.length; i+=4){
+            Monster curMonster = AllMonsters.getMonster(data[i]);
+            curMonster.name = data[i+1];
+            curMonster.atk = Integer.parseInt(data[i+2]);
+            curMonster.dodgeChance = Integer.parseInt(data[i+3]);
+            monsters.add(curMonster);
+        }
+    }
+
     public String getName(){
         return name;
     }
@@ -61,7 +76,7 @@ public class Player {
         String nl = "\n";
         result += name + nl + face + nl + monsters.size() + nl;
         for(Monster m : monsters){
-            result += m.toString() + "﹏\n";
+            result += m.toString() + "\n";
         } 
         return result;
     }
