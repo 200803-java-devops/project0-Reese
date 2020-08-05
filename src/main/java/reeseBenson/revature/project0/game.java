@@ -1,10 +1,12 @@
 package reeseBenson.revature.project0;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 
 public class Game {
     MyIO io;
+    Player player;
     Game(){
         io = new MyIO();
     }
@@ -37,12 +39,12 @@ public class Game {
     }
 
     public void create() {
-        Player player = new Player(io.getXcharsUpperCase("What is your Name? [3 chars max]", "Hello ", 3, true), Player.pickAFace());
+        player = new Player(io.getXcharsUpperCase("What is your Name? [3 chars max]", "Hello ", 3, true), Player.pickAFace());
         player.firstMonster();
-        play(player);
+        play();
     }
 
-    public void play(Player player){
+    public void play(){
         boolean exit = false;
         while(!exit){
             switch (io.Choice("Would you like to:", "battle", "Catch Monsters", "Save", "return to main menu")){
@@ -74,7 +76,27 @@ public class Game {
 
     public void save(){
         System.out.println("Saving!!");
-        for(int i=0;i<10000000;i++);
+        File file = new File("reeseBenson.revature.project0\\.saves\\save-" + player.getName());
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(file);
+            
+        } catch (Exception e) {
+           System.err.println("there was an error opening the file " + e.getMessage());
+           return;
+        }
+        try {
+            fileWriter.write(player.toString());
+        } catch (Exception e) {
+            System.err.println("there was an error writting to the file" + e.getMessage());
+        } finally{
+            try {
+                fileWriter.close();
+            } catch (Exception e) {
+                System.err.println("there was an error closing the file" + e.getMessage());
+                return;
+            }
+        }
     }
 
 }

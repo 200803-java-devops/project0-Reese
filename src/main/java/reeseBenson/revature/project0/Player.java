@@ -56,4 +56,14 @@ public class Player {
         monsters.add(starters.get(choice));       
     }
 
+    public String toString(){
+        String result = "";
+        String nl = "\n";
+        result += name + nl + face + nl + monsters.size() + nl;
+        for(Monster m : monsters){
+            result += m.toString() + "﹏\n";
+        } 
+        return result;
+    }
+
 }

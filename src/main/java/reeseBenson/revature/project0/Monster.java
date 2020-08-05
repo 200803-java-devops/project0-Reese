@@ -38,6 +38,12 @@ public abstract class Monster {
         return chanceToHit;
     }
 
+    public String toString(){
+        String str;
+        str = type + '\n' + name + '\n' + atk + '\n' + dodgeChance;
+        return str;
+    }
+
 
     public int dodge(){
         // rng out off dodge chance 
