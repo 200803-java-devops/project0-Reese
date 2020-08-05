@@ -3,25 +3,25 @@
 This Project will be a multiplayer game that is like a simple version of pokemon. There will be 2 game modes a map mode to run around and catch monsters and a battle mode where you can battle a (RNG) CPU or a friend.
 
 ## Features
-  -[X] Present a Welcome screen.
-    -[x] Be able to start a new game
-    -[ ] Be able to Load a game
-    -[x] Be able to exit program
-  -[x] Character creation
-    -[x] present a player with customization options
-    -[x] let a player choose thier name
-    -[x] let a player pick between starting monsters
-  -[x] Save a game
-    -[x] Local Save
-    -[ ] Database save
-  -[ ] Exploration
-    -[ ] move player on map
-    -[ ] Capture Monsters
-  -[ ] Battle
-    -[ ] be able to attack another monster
-    -[ ] be able to flee from battle
-    -[ ] battle a CPU
-    -[ ] battle a friend
+  - [X] Present a Welcome screen.
+    - [x] Be able to start a new game
+    - [ ] Be able to Load a game
+    - [x] Be able to exit program
+  - [x] Character creation
+    - [x] present a player with customization options
+    - [x] let a player choose thier name
+    - [x] let a player pick between starting monsters
+  - [x] Save a game
+    - [x] Local Save
+    - [ ] Database save
+  - [ ] Exploration
+    - [ ] move player on map
+    - [ ] Capture Monsters
+  - [ ] Battle
+    - [ ] be able to attack another monster
+    - [ ] be able to flee from battle
+    - [ ] battle a CPU
+    - [ ] battle a friend
   
 
 ## Tech Stack
