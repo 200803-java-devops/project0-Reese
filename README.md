@@ -11,8 +11,8 @@ This Project will be a multiplayer game that is like a simple version of pokemon
     -[x] present a player with customization options
     -[x] let a player choose thier name
     -[x] let a player pick between starting monsters
-  -[ ] Save a game
-    -[ ] Local Save
+  -[x] Save a game
+    -[x] Local Save
     -[ ] Database save
   -[ ] Exploration
     -[ ] move player on map
