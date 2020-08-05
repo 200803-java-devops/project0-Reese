@@ -5,7 +5,7 @@ This Project will be a multiplayer game that is like a simple version of pokemon
 ## Features
   - [X] Present a Welcome screen.
     - [x] Be able to start a new game
-    - [ ] Be able to Load a game
+    - [X] Be able to Load a game
     - [x] Be able to exit program
   - [x] Character creation
     - [x] present a player with customization options
@@ -14,6 +14,9 @@ This Project will be a multiplayer game that is like a simple version of pokemon
   - [x] Save a game
     - [x] Local Save
     - [ ] Database save
+  - [x] Load a game
+    - [x] Load from Local Save
+    - [ ] Load from Database save
   - [ ] Exploration
     - [ ] move player on map
     - [ ] Capture Monsters
