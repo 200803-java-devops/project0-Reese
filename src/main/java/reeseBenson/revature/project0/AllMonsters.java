@@ -1,9 +1,6 @@
 package reeseBenson.revature.project0;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
 
 public class AllMonsters {
     private static HashMap<String, Monster> monsterMap = new HashMap<String,Monster>(){

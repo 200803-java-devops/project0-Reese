@@ -76,7 +76,7 @@ public class Game {
 
     public void save(){
         System.out.println("Saving...");
-        File file = new File("reeseBenson.revature.project0\\.saves\\save-" + player.getName());
+        File file = new File(".saves\\save-" + player.getName());
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(file);
@@ -100,7 +100,7 @@ public class Game {
     }
 
     public void load(){
-        File saveDirectory = new File("reeseBenson.revature.project0\\.saves");
+        File saveDirectory = new File(".saves");
         ArrayList<File> files = new ArrayList<File>();
         ArrayList<String> characters = new ArrayList<String>();
         for(File file : saveDirectory.listFiles()){
