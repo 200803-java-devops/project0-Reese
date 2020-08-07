@@ -11,6 +11,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.StringBufferInputStream;
+import java.nio.file.Files;
 
 import org.junit.After;
 import org.junit.Before;
@@ -26,8 +27,7 @@ public class MyIOTest {
 
     public void setup(String input) throws Exception {
         in = new StringBufferInputStream(input);
-        file = new File("test");
-        file.createNewFile();
+        file = File.createTempFile("test", null);
         out = new PrintStream(file);
         io = new MyIO(in,out);
         
@@ -36,19 +36,17 @@ public class MyIOTest {
     @Test
     public void mapKeyTest() throws Exception {
         setup("");
-        String expected = "*********************\n* You:(•_•)         *\n* Monster: M        *\n*********************\n\nTo navigate press w (up), s (down),a (left), or d (right) and then press enter:";
+        String expected = "*********************\n* You:(•_•)         *\n* Monster: M        *\n*********************\n\nTo navigate press w (up), s (down),a (left), or d (right) and then press enter:\n To go back press b:";
         io.mapKey("(•_•)");
         String actual = readFile(file);
-        file.delete();
         assertEquals(expected, actual);
 
-        file = new File("test");
-        file.createNewFile();
+        file.delete();
+        file = File.createTempFile("test", null);
         MyIO io2 = new MyIO(in, new PrintStream(file));
         io2.mapKey("(*-*)");
-        expected = "*********************\n* You:(*-*)         *\n* Monster: M        *\n*********************\n\nTo navigate press w (up), s (down),a (left), or d (right) and then press enter:";
+        expected = "*********************\n* You:(*-*)         *\n* Monster: M        *\n*********************\n\nTo navigate press w (up), s (down),a (left), or d (right) and then press enter:\n To go back press b:";
         actual = readFile(file);
-        file.delete();
         assertEquals(expected, actual);
     }
 
@@ -66,10 +64,10 @@ public class MyIOTest {
     }
 
     @After
-    public void cleanUp(){
-        if(file.exists()){
-            file.delete();
-        }
+    public void cleanUp() throws IOException {
+        out.close();
+        in.close();
+        file.delete();
     }
 
     private String readFile(File file){

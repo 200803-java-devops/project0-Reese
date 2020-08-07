@@ -115,7 +115,7 @@ public class MyIO {
         return result;
     }
 	public void mapKey(String character) {
-		out.println("*********************\n* You:"+ character +"         *\n* Monster: M        *\n*********************\n\nTo navigate press w (up), s (down),a (left), or d (right) and then press enter:");
+		out.println("*********************\n* You:"+ character +"         *\n* Monster: M        *\n*********************\n\nTo navigate press w (up), s (down),a (left), or d (right) and then press enter:\n To go back press b:");
     }
     
     public CharSequence charChoice(String message, String c){
