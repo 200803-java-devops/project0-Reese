@@ -124,7 +124,9 @@ public class Grid {
         for (int i = 0; i < coords.size(); i++) {
             int[] x = coords.get(i);
             x[1] += 1;
-            removeInvalidCoords(x, i, coords, values);
+            if(removeInvalidCoords(x, i, coords, values)){
+                i--;
+            };
         }
         addItemsToSpaces(coords, values);
     }
@@ -133,7 +135,9 @@ public class Grid {
         for (int i = 0; i < coords.size(); i++) {
             int[] x = coords.get(i);
             x[1] -= 1;
-            removeInvalidCoords(x, i, coords, values);
+            if(removeInvalidCoords(x, i, coords, values)){
+                i--;
+            };
         }
         addItemsToSpaces(coords, values);
     }
@@ -142,7 +146,9 @@ public class Grid {
         for (int i = 0; i < coords.size(); i++) {
             int[] x = coords.get(i);
             x[0] -= 1;
-            removeInvalidCoords(x, i, coords, values);
+            if(removeInvalidCoords(x, i, coords, values)){
+                i--;
+            }    
         }
         addItemsToSpaces(coords, values);
     }
@@ -151,7 +157,9 @@ public class Grid {
         for (int i = 0; i < coords.size(); i++) {
             int[] x = coords.get(i);
             x[0] += 1;
-            removeInvalidCoords(x, i, coords, values);
+            if(removeInvalidCoords(x, i, coords, values)){
+                i--;
+            };
         }
         addItemsToSpaces(coords, values);
     }
@@ -164,12 +172,14 @@ public class Grid {
         return key[0] + "," + key[1];
     }
 
-    private void removeInvalidCoords(int[] key, int index, ArrayList<int[]> coords, ArrayList<String> values) {
+    private boolean removeInvalidCoords(int[] key, int index, ArrayList<int[]> coords, ArrayList<String> values) {
         String x = getKeyString(key);
         if (x.equals(characterKey) || !validCoords(key)) {
             coords.remove(key);
             values.remove(index);
+            return true;
         }
+        return false;
     }
 
     private void addItemsToSpaces(ArrayList<int[]> coords, ArrayList<String> values) {

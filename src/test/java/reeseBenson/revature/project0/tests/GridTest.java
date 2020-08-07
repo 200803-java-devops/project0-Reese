@@ -115,6 +115,23 @@ public class GridTest
         map3.Move('w');
         actual = map3.getSpaces();
         assertEquals(expected, actual);
+
+        //should move both Ms up thus player moved down
+        spaces.put("1,1", "M");
+        spaces.put("3,1", "M");
+        expected.put("2,1", "M");
+        expected.put("4,1", "M");
+        map3.Move('w');
+        actual = map.getSpaces();
+        assertEquals(expected, actual);
+
+        //should move both Ms up thus player moved down 
+        expected.remove("2,1", "M");
+        expected.remove("4,1", "M");
+        expected.put("3,1", "M");
+        map3.Move('w');
+        actual = map.getSpaces();
+        assertEquals(expected, actual);
     }
     
     @Test
@@ -138,14 +155,31 @@ public class GridTest
 
         //should move into player and be deleted
         spaces.put("3,2", "M");
-        actual = map.getSpaces();
         map.Move('s');
+        actual = map.getSpaces();
+        assertEquals(expected, actual);
+
+        //should move both Ms down thus player moved up 
+        spaces.put("1,1", "M");
+        spaces.put("3,1", "M");
+        expected.put("0,1", "M");
+        expected.put("2,1", "M");
+        map.Move('s');
+        actual = map.getSpaces();
+        assertEquals(expected, actual);
+
+        //should move both Ms down thus player moved up 
+        expected.remove("0,1", "M");
+        expected.remove("2,1", "M");
+        expected.put("1,1", "M");
+        map.Move('s');
+        actual = map.getSpaces();
         assertEquals(expected, actual);
     }
 
     @Test
     public void moveRightTest(){
-        // Should move left 1 space
+        // Should move m left 1 space
         HashMap<String, String> spaces = new HashMap<String,String>();
         spaces.put("2,4", "M");
         Grid map = new Grid(spaces, playerFace1);
@@ -167,11 +201,28 @@ public class GridTest
         actual = map.getSpaces();
         map.Move('d');
         assertEquals(expected, actual);
+
+        //should move both Ms left thus player moved right 
+        spaces.put("1,1", "M");
+        spaces.put("3,3", "M");
+        expected.put("1,0", "M");
+        expected.put("3,2", "M");
+        map.Move('d');
+        actual = map.getSpaces();
+        assertEquals(expected, actual);
+
+        //should move both Ms left deleting one thus player moved right 
+        expected.remove("1,0", "M");
+        expected.remove("3,2", "M");
+        expected.put("3,1", "M");
+        map.Move('d');
+        actual = map.getSpaces();
+        assertEquals(expected, actual);
     }
 
     @Test
     public void moveLeftTest(){
-        // Should move right 1 space
+        // Should move m right 1 space
         HashMap<String, String> spaces = new HashMap<String,String>();
         spaces.put("2,0", "M");
         Grid map = new Grid(spaces, playerFace1);
@@ -182,16 +233,34 @@ public class GridTest
         HashMap<String, String> actual = map.getSpaces();
         assertEquals(expected, actual);
 
-        //should move into player and be deleted
+        // M should move into player and be deleted
         map.Move('a');
         actual =map.getSpaces();
         expected.remove("2,1");
         assertEquals(expected, actual);
 
-        //should move off map and be deleted
+        // M should move off map and be deleted
         spaces.put("3,4", "M");
         actual = map.getSpaces();
         map.Move('a');
         assertEquals(expected, actual);
+        
+        //should move both Ms right thus player moved left 
+        spaces.put("1,1", "M");
+        spaces.put("3,3", "M");
+        expected.put("1,2", "M");
+        expected.put("3,4", "M");
+        map.Move('a');
+        actual = map.getSpaces();
+        assertEquals(expected, actual);
+
+        //should move both Ms right deleting one thus player moved left 
+        expected.remove("1,2", "M");
+        expected.remove("3,4", "M");
+        expected.put("1,3", "M");
+        map.Move('a');
+        actual = map.getSpaces();
+        assertEquals(expected, actual);
+        
     }
 }

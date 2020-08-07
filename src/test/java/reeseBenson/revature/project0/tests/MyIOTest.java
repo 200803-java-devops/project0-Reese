@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.StringBufferInputStream;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -62,6 +63,13 @@ public class MyIOTest {
         actual = io.charChoice(null, "wsad");
         expected ="s";
         assertEquals(expected, actual);
+    }
+
+    @After
+    public void cleanUp(){
+        if(file.exists()){
+            file.delete();
+        }
     }
 
     private String readFile(File file){
