@@ -144,7 +144,7 @@ public class GridTest
     }
 
     @Test
-    public void moveLeftTest(){
+    public void moveRightTest(){
         // Should move left 1 space
         HashMap<String, String> spaces = new HashMap<String,String>();
         spaces.put("2,4", "M");
@@ -152,12 +152,12 @@ public class GridTest
         HashMap<String, String> expected = new HashMap<String,String>();
         expected.put("2,3", "M");
         expected.put("2,2",playerFace1);
-        map.Move('a');
+        map.Move('d');
         HashMap<String, String> actual = map.getSpaces();
         assertEquals(expected, actual);
 
         //should move into player and be deleted
-        map.Move('a');
+        map.Move('d');
         actual =map.getSpaces();
         expected.remove("2,3");
         assertEquals(expected, actual);
@@ -165,12 +165,12 @@ public class GridTest
         //should move off map and be deleted
         spaces.put("3,0", "M");
         actual = map.getSpaces();
-        map.Move('a');
+        map.Move('d');
         assertEquals(expected, actual);
     }
 
     @Test
-    public void moveRightTest(){
+    public void moveLeftTest(){
         // Should move right 1 space
         HashMap<String, String> spaces = new HashMap<String,String>();
         spaces.put("2,0", "M");
@@ -178,12 +178,12 @@ public class GridTest
         HashMap<String, String> expected = new HashMap<String,String>();
         expected.put("2,1", "M");
         expected.put("2,2",playerFace1);
-        map.Move('d');
+        map.Move('a');
         HashMap<String, String> actual = map.getSpaces();
         assertEquals(expected, actual);
 
         //should move into player and be deleted
-        map.Move('d');
+        map.Move('a');
         actual =map.getSpaces();
         expected.remove("2,1");
         assertEquals(expected, actual);
@@ -191,7 +191,7 @@ public class GridTest
         //should move off map and be deleted
         spaces.put("3,4", "M");
         actual = map.getSpaces();
-        map.Move('d');
+        map.Move('a');
         assertEquals(expected, actual);
     }
 }

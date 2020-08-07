@@ -123,7 +123,7 @@ public class Grid {
     private void moveLeft(ArrayList<int[]> coords, ArrayList<String> values) {
         for (int i = 0; i < coords.size(); i++) {
             int[] x = coords.get(i);
-            x[1] -= 1;
+            x[1] += 1;
             removeInvalidCoords(x, i, coords, values);
         }
         addItemsToSpaces(coords, values);
@@ -132,7 +132,7 @@ public class Grid {
     private void moveRight(ArrayList<int[]> coords, ArrayList<String> values) {
         for (int i = 0; i < coords.size(); i++) {
             int[] x = coords.get(i);
-            x[1] += 1;
+            x[1] -= 1;
             removeInvalidCoords(x, i, coords, values);
         }
         addItemsToSpaces(coords, values);
