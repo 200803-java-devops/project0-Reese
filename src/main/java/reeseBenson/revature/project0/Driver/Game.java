@@ -1,13 +1,20 @@
-package reeseBenson.revature.project0;
+package reeseBenson.revature.project0.Driver;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import reeseBenson.revature.project0.Grid;
+import reeseBenson.revature.project0.MyIO;
+import reeseBenson.revature.project0.Player;
 
 public class Game {
     MyIO io;
     Player player;
-    Game(){
+    Grid grid;
+
+    public Game() {
         io = new MyIO();
     }
 
@@ -39,15 +46,16 @@ public class Game {
     }
 
     public void create() {
-        player = new Player(io.getXcharsUpperCase("What is your Name? [3 chars max]", "Hello ", 3, true), Player.pickAFace());
+        player = new Player(io.getXcharsUpperCase("What is your Name? [3 chars max]", "Hello ", 3, true),
+                Player.pickAFace());
         player.firstMonster();
         play();
     }
 
-    public void play(){
+    public void play() {
         boolean exit = false;
-        while(!exit){
-            switch (io.Choice("Would you like to:", "battle", "Catch Monsters", "Save", "return to main menu")){
+        while (!exit) {
+            switch (io.Choice("Would you like to:", "battle", "Catch Monsters", "Save", "return to main menu")) {
                 case 1:
                     battle();
                     break;
@@ -64,32 +72,41 @@ public class Game {
         }
     }
 
-    public void battle(){
+    public void battle() {
         System.out.println("BATTLE!!!!");
-        for(int i=0;i<10000000;i++);
+        for (int i = 0; i < 10000000; i++)
+            ;
     }
 
-    public void explore(){
+    public void explore() {
         System.out.println("Explore!!");
-        for(int i=0;i<10000000;i++);
+        HashMap<String, String> hashMap = new HashMap<String, String>();
+        hashMap.put("0,0", "M");
+        hashMap.put("4,2", "M");
+        grid = new Grid(hashMap, player.getFace());
+        while (true) {
+            System.out.println(grid.getPrettyPrint());
+            io.mapKey(player.getFace());
+            grid.Move(io.charChoice(null, "wsad").charAt(0));
+        }
     }
 
-    public void save(){
+    public void save() {
         System.out.println("Saving...");
         File file = new File(".saves\\save-" + player.getName());
         FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(file);
-            
+
         } catch (Exception e) {
-           System.err.println("there was an error opening the file " + e.getMessage());
-           return;
+            System.err.println("there was an error opening the file " + e.getMessage());
+            return;
         }
         try {
             fileWriter.write(player.toString());
         } catch (Exception e) {
             System.err.println("there was an error writting to the file" + e.getMessage());
-        } finally{
+        } finally {
             try {
                 fileWriter.close();
             } catch (Exception e) {
@@ -99,18 +116,19 @@ public class Game {
         }
     }
 
-    public void load(){
+    public void load() {
         File saveDirectory = new File(".saves");
         ArrayList<File> files = new ArrayList<File>();
         ArrayList<String> characters = new ArrayList<String>();
-        for(File file : saveDirectory.listFiles()){
-            if(file.getName().contains("save-")){
+        for (File file : saveDirectory.listFiles()) {
+            if (file.getName().contains("save-")) {
                 files.add(file);
                 characters.add(file.getName().substring(5));
             }
         }
-        
-        player = new Player(io.readFile(files.get(io.Choice("What Character would you like to Play?", characters)-1)));
+
+        player = new Player(
+                io.readFile(files.get(io.Choice("What Character would you like to Play?", characters) - 1)));
         play();
     }
 }

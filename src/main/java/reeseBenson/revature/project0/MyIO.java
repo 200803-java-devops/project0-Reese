@@ -4,14 +4,23 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class MyIO {
     private BufferedReader input;
+    private PrintStream out;
     public MyIO() {
         input = new BufferedReader(new java.io.InputStreamReader(System.in));
+        out = System.out;
     }
+    public MyIO(InputStream in, PrintStream out) {
+        input = new BufferedReader(new java.io.InputStreamReader(in));
+        this.out = out;
+    }
+    
 
     public boolean yesOrNO(String message){
         boolean decision = false;
@@ -31,25 +40,25 @@ public class MyIO {
         return num;
     }
     public void title(){
-        System.out.println(
+        out.println(
                     "\n** ------------------------------------------------------------------------------------------------------------------- **");
-            System.out.println(
+            out.println(
                     " _______  _______  ___   _  _______  __   __  _______  __    _    ______    ___   _______    _______  _______  _______\n|       ||       ||   | | ||       ||  |_|  ||       ||  |  | |  |    _ |  |   | |       |  |       ||       ||       |\n|    _  ||   _   ||   |_| ||    ___||       ||   _   ||   |_| |  |   | ||  |   | |    _  |  |   _   ||    ___||    ___|\n|   |_| ||  | |  ||      _||   |___ |       ||  | |  ||       |  |   |_||_ |   | |   |_| |  |  | |  ||   |___ |   |___\n|    ___||  |_|  ||     |_ |    ___||       ||  |_|  ||  _    |  |    __  ||   | |    ___|  |  |_|  ||    ___||    ___|\n|   |    |       ||    _  ||   |___ | ||_|| ||       || | |   |  |   |  | ||   | |   |      |       ||   |    |   |\n|___|    |_______||___| |_||_______||_|   |_||_______||_|  |__|  |___|  |_||___| |___|      |_______||___|    |___|");
-            System.out.println(
+            out.println(
                     "** ------------------------------------------------------------------------------------------------------------------- **\n\n");
             
     }
     public int Choice(String message, ArrayList<String> choices){
         int result = 0;
         while(result==0){
-            System.out.println(message);
+            out.println(message);
             for(int i=0; i< choices.size(); i++){
-                System.out.println((i+1) + "] " + choices.get(i));
+                out.println((i+1) + "] " + choices.get(i));
             }
             result = getlineAsInt();
             if(result > choices.size()){
                 result = 0;
-                System.out.println("please input an integer between 1 and " + choices.size());
+                out.println("please input an integer between 1 and " + choices.size());
             }
         }
         return result;
@@ -57,14 +66,14 @@ public class MyIO {
     public int Choice(String message, String... choices){
         int result = 0;
         while(result==0){
-            System.out.println(message);
+            out.println(message);
             for(int i=0; i< choices.length; i++){
-                System.out.println((i+1) + "] " + choices[i]);
+                out.println((i+1) + "] " + choices[i]);
             }
             result = getlineAsInt();
             if(result > choices.length){
                 result = 0;
-                System.out.println("please input an integer between 1 and " + choices.length);
+                out.println("please input an integer between 1 and " + choices.length);
             }
         }
         return result;
@@ -74,14 +83,14 @@ public class MyIO {
         boolean ok = false;
         String result = null;
         while(!ok){
-            System.out.println(message);
+            out.println(message);
             try {
                 result = input.readLine().toUpperCase().trim().concat("   ").substring(0, characters);
             } catch (IOException e) {
                 e.printStackTrace();
             }
             if(response !=null){
-                System.out.println(response + result);
+                out.println(response + result);
             }
             if(askIsOk){
                 ok = yesOrNO("Is this okay?");  
@@ -104,5 +113,24 @@ public class MyIO {
            System.err.println("Error opening file to read" + e.getMessage());
         }
         return result;
+    }
+	public void mapKey(String character) {
+		out.println("*********************\n* You:"+ character +"         *\n* Monster: M        *\n*********************\n\nTo navigate press w (up), s (down),a (left), or d (right) and then press enter:");
+    }
+    
+    public CharSequence charChoice(String message, String c){
+        CharSequence choice = "\n";
+        do {
+            if(message != null){
+                out.println(message);
+            }
+            try {
+                choice = input.readLine().subSequence(0, 1);
+            } catch (IOException e) {
+                System.err.println("Failed to read input");
+                e.printStackTrace();
+            }
+        } while (!c.contains(choice));
+        return choice;
     }
 }

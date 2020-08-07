@@ -7,13 +7,13 @@ public class Player {
     private String face;
     private ArrayList<Monster> monsters;
 
-    Player(String name, String face){
+    public Player(String name, String face){
         this.name = name;
         this.face = face;
         monsters = new ArrayList<Monster>();
     }
 
-    Player(String saveData){
+    public Player(String saveData){
         String [] data = saveData.split("\n");
         name = data[0];
         face = data[1];

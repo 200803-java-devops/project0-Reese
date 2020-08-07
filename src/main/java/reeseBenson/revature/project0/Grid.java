@@ -40,6 +40,7 @@ public class Grid {
     }
 
     private void buildPrettyPrint() {
+        prettyPrint ="";
         for (int i = 0; i < height; i++) {
             prettyPrint += buildRow(i);
         }
@@ -116,7 +117,7 @@ public class Grid {
                 moveRight(coords, values);
                 break;
         }
-
+        buildPrettyPrint();
     }
 
     private void moveLeft(ArrayList<int[]> coords, ArrayList<String> values) {
