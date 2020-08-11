@@ -1,6 +1,9 @@
 package reeseBenson.revature.project0;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Random;
 
 public class AllMonsters {
     private static HashMap<String, Monster> monsterMap = new HashMap<String,Monster>(){
@@ -19,5 +22,11 @@ public class AllMonsters {
        return monsterMap.get(key.toLowerCase());
     }
 
+    public static Monster getRandom(){
+       Random random = new Random(); 
+       int number = random.nextInt(monsterMap.size());
+       Collection<Monster> values = monsterMap.values();
+       return (Monster) values.toArray()[number];
+    }
 
 }

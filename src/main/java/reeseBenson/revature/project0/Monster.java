@@ -16,7 +16,11 @@ public abstract class Monster {
         atk = 1;
         dodgeChance= 0;
     }
-    
+
+    public Monster createInstance(){
+        return new Skizard();
+    }
+
     public int getAtk(){
         return atk;
     }

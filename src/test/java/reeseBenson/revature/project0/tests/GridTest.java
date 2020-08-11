@@ -1,11 +1,14 @@
 package reeseBenson.revature.project0.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import reeseBenson.revature.project0.Grid;
 
@@ -262,5 +265,18 @@ public class GridTest
         actual = map.getSpaces();
         assertEquals(expected, actual);
         
+    }
+
+    @Test
+    public void TestMonsterCollision(){
+        HashMap<String, String> spaces = new HashMap<String,String>();
+        spaces.put("2,0", "M");
+        spaces.put("3,2", "M");
+        Grid map = new Grid(spaces, playerFace1);
+        map.Move('s');
+        assertTrue("The Monster Collided flag should have been set", map.getMonsterColisionFlag());
+        assertFalse("The Monster Collided flag should have been reset to false", map.getMonsterColisionFlag());
+        map.Move('s');
+        assertFalse("The Monster Collided flag should not have been set to true", map.getMonsterColisionFlag());
     }
 }

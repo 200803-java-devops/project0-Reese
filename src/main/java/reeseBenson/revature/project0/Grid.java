@@ -12,6 +12,7 @@ public class Grid {
     String characterKey;
     String prettyPrint;
     HashMap<String, String> spaces;
+    boolean MonsterCollision;
 
     public Grid(String character) {
         innerHieght = 3;
@@ -23,6 +24,7 @@ public class Grid {
         spaces = new HashMap<String, String>();
         spaces.put("2,2", character);
         prettyPrint = "";
+        MonsterCollision = false;
         buildPrettyPrint();
     }
 
@@ -36,6 +38,7 @@ public class Grid {
         this.spaces = spaces;
         spaces.put("2,2", character);
         prettyPrint = "";
+        MonsterCollision = false;
         buildPrettyPrint();
     }
 
@@ -174,7 +177,13 @@ public class Grid {
 
     private boolean removeInvalidCoords(int[] key, int index, ArrayList<int[]> coords, ArrayList<String> values) {
         String x = getKeyString(key);
-        if (x.equals(characterKey) || !validCoords(key)) {
+        if (x.equals(characterKey)){
+            MonsterCollision = true;
+            coords.remove(key);
+            values.remove(index);
+            return true;
+        }
+        if (!validCoords(key)) {
             coords.remove(key);
             values.remove(index);
             return true;
@@ -201,5 +210,19 @@ public class Grid {
 
     public String getPrettyPrint() {
         return prettyPrint;
+    }
+
+    /**
+     * This is a function that checks if a monster has collided with the player
+     * @return true if the player has collided with a monster false otherwise
+     * @version 1.0.0 8/10/2020
+     * @author Reese Benson
+     */
+    public Boolean getMonsterColisionFlag(){
+        if(MonsterCollision){
+            MonsterCollision = false;
+            return true;
+        }
+        return false;
     }
 }

@@ -26,7 +26,19 @@ This Project will be a multiplayer game that is like a simple version of pokemon
     - [ ] battle a CPU
     - [ ] battle a friend
   
-
+## Usage
+ ### Compile
+```bash
+  mvn compile
+```
+### Run
+```bash
+  mvn exec:java -q
+```
+### Test
+```bash
+  mvn test
+```
 ## Tech Stack
 - Java 8:
   - File I/O

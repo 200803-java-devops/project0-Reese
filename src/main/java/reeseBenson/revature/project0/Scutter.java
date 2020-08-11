@@ -7,4 +7,8 @@ public class  Scutter extends Monster {
         type="Scutter";
         art="\\(~)/\n-( )-\n/(_)\\";
     }
+
+    public Monster createInstance(){
+        return new Scutter();
+    }
 }

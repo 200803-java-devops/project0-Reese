@@ -7,4 +7,8 @@ public class  Skizard extends Monster {
         type="Skizard";
         art="  _\n /•)\n/-|-";
     }
+
+    public Monster createInstance(){
+        return new Skizard();
+    }
 }

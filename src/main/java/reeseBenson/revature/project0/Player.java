@@ -81,4 +81,8 @@ public class Player {
         return result;
     }
 
+    public void addMonster(Monster monster){
+        monsters.add(monster);
+    }
+
 }

@@ -4,8 +4,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
+import reeseBenson.revature.project0.AllMonsters;
 import reeseBenson.revature.project0.Grid;
+import reeseBenson.revature.project0.Monster;
 import reeseBenson.revature.project0.MyIO;
 import reeseBenson.revature.project0.Player;
 
@@ -88,6 +91,18 @@ public class Game {
             System.out.println(grid.getPrettyPrint());
             io.mapKey(player.getFace());
             grid.Move(io.charChoice(null, "wsad").charAt(0));
+            if(grid.getMonsterColisionFlag()){
+                io.write("You found a ...");
+                try{
+                TimeUnit.SECONDS.sleep(1);
+                Monster monster = AllMonsters.getRandom().createInstance();
+                player.addMonster(monster);
+                io.write(monster.getName() + "!\n" + monster.getArt() + "!\n");
+                TimeUnit.SECONDS.sleep(1);
+                }catch(InterruptedException e){
+                    System.err.println("Failed to Sleep-" + e.getMessage());
+                }
+            }
         }
     }
 

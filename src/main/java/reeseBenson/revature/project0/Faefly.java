@@ -7,4 +7,8 @@ public class Faefly extends Monster{
         type = "faefly";
         art = "(\\o/)\n(/|\\)";
     }
+
+    public Monster createInstance(){
+        return new Faefly();
+    }
 }
