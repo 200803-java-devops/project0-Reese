@@ -89,24 +89,36 @@ public class Game {
         hashMap.put("4,2", "M");
         grid = new Grid(hashMap, player.getFace());
         while (true) {
-            System.out.println(grid.getPrettyPrint());
+            io.write(grid.getPrettyPrint());
             io.mapKey(player.getFace());
-            grid.Move(io.charChoice(null, "wsad").charAt(0));
-            if(grid.getMonsterColisionFlag()){
-                io.write("You found a ...");
-                try{
-                TimeUnit.SECONDS.sleep(1);
-                Monster monster = AllMonsters.getRandom().createInstance();
-                player.addMonster(monster);
-                io.write(monster.getName() + "!\n" + monster.getArt() + "!\n");
-                TimeUnit.SECONDS.sleep(1);
-                }catch(InterruptedException e){
-                    System.err.println("Failed to Sleep-" + e.getMessage());
-                }
+            char choice = io.charChoice(null, "wsadb").charAt(0);
+            if(choice =='b')
+                break;
+            grid.Move(choice);
+            handleCollision();
+            generateMonsters();
+            
+        }
+    }
+
+    private void handleCollision(){
+        if(grid.getMonsterColisionFlag()){
+            io.write("You found a ...");
+            try{
+            TimeUnit.SECONDS.sleep(1);
+            Monster monster = AllMonsters.getRandom().createInstance();
+            player.addMonster(monster);
+            io.write(monster.getName() + "!\n" + monster.getArt() + "!\n");
+            TimeUnit.SECONDS.sleep(1);
+            }catch(InterruptedException e){
+                System.err.println("Failed to Sleep-" + e.getMessage());
             }
-            if( new Random().nextInt(100) < 10){
-                grid.addMonster();
-            }
+        }
+    }
+
+    private void generateMonsters(){
+        if( new Random().nextInt(100) < 10){
+            grid.addMonster();
         }
     }
 
