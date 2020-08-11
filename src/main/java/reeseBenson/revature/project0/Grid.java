@@ -2,6 +2,7 @@ package reeseBenson.revature.project0;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class Grid {
     int innerWidth;
@@ -203,6 +204,16 @@ public class Grid {
         int[] coords = { Integer.parseInt(splitKey[0]), Integer.parseInt(splitKey[1]) };
         return coords;
     }
+    
+    public void addMonster(){
+        Random r = new Random();
+        int row = r.nextInt(height);
+        int col = r.nextInt(width);
+        String key = row + "," + col;
+        if(!key.equals(characterKey)){
+            spaces.put(key, "M");
+        }
+    }
 
     public HashMap<String, String> getSpaces() {
         return spaces;
@@ -225,4 +236,21 @@ public class Grid {
         }
         return false;
     }
+
+    /**
+     * The getter function for the grid width.
+     * @return The width of the grid
+     */
+    public int getWidth(){
+        return width;
+    }
+    /**
+     * The Getter function for grid height
+     * @return The hieght of the grid
+     */
+    public int getHeight(){
+        return height;
+    }
+
+    
 }

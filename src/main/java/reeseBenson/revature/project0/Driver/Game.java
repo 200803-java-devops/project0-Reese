@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import reeseBenson.revature.project0.AllMonsters;
@@ -102,6 +103,9 @@ public class Game {
                 }catch(InterruptedException e){
                     System.err.println("Failed to Sleep-" + e.getMessage());
                 }
+            }
+            if( new Random().nextInt(100) < 10){
+                grid.addMonster();
             }
         }
     }
