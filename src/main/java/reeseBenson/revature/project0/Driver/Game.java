@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import reeseBenson.revature.project0.AllMonsters;
@@ -20,7 +21,7 @@ public class Game {
     MyIO io;
     Player player;
     Grid grid;
-
+    
     public Game(MyIO io) {
         this.io = io;
     }
@@ -41,11 +42,9 @@ public class Game {
                     break;
                 case 1:
                     player = PlayerFactory.create(io);
-                    play();
                     break;
                 case 2:
                     player = load();
-                    play();
                     break;
                 case 3:
                     System.out.println("\nExiting game");
@@ -53,8 +52,10 @@ public class Game {
 
                 default:
                     System.err.println("please input an integer between 1-3");
-                    break;
+                    return true;
             }
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> save(player)));
+            play();
             return true;
     }
 

@@ -24,8 +24,8 @@ This Project will be a multiplayer game that is like a simple version of pokemon
     - [x] be able to attack another monster
     - [x] battle a CPU
     - [x] battle a friend
-  - [ ] Multithreading
-     - [ ] pick up kill signal and ask to save progress on new thread 
+  - [x] Multithreading
+     - [x] pick up kill signal and ask to save progress on new thread 
   
 ## Usage
  ### Compile
