@@ -13,7 +13,7 @@ public abstract class Monster {
     protected int dodgeChance;
     protected ArrayList<Attack> attacks;
     
-    Monster(){
+    public Monster(){
         health = 100;
         maxHealth = 100;
         atk = 1;

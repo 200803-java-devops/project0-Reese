@@ -14,6 +14,7 @@ import reeseBenson.revature.project0.GameComponents.Grid;
 import reeseBenson.revature.project0.Monster;
 import reeseBenson.revature.project0.MyIO;
 import reeseBenson.revature.project0.Player;
+import reeseBenson.revature.project0.Actors.PlayerFactory;
 
 public class Game {
     MyIO io;
@@ -29,32 +30,59 @@ public class Game {
         // loop back to start screen
         while (play) {
             io.title();
-            int input = io.Choice("", "\tStart New Game", "\tLoad Game", "\texit");
+            play = newOrLoad();
+        }
+    }
+
+    private boolean newOrLoad(){
+        int input = io.Choice("", "\tStart New Game", "\tLoad Game", "\texit");
             switch (input) {
                 case 0:
                     break;
                 case 1:
-                    create();
+                    player = PlayerFactory.create(io);
+                    play();
                     break;
                 case 2:
-                    load();
+                    player = load();
+                    play();
                     break;
                 case 3:
                     System.out.println("\nExiting game");
-                    play = false;
-                    break;
+                    return false;
 
                 default:
                     System.err.println("please input an integer between 1-3");
                     break;
             }
-        }
+            return true;
     }
 
-    public void create() {
-        player = new Player(io.getXcharsUpperCase("What is your Name? [3 chars max]", "Hello ", 3, true), Player.pickAFace(io), io);
-        player.firstMonster();
-        play();
+    private  Player newOrLoad(Player p){
+        boolean picking = true;
+        while(picking){
+            int input = io.Choice("", "\tStart New Game", "\tLoad Game", "\texit");
+            switch (input) {
+                case 0:
+                break;
+                case 1:
+                p = PlayerFactory.create(io);
+                save(p);
+                return p;
+                case 2:
+                p = load();
+                return p;
+                case 3:
+                System.out.println("\nExiting game");
+                picking = false;
+                break;
+                
+                default:
+                System.err.println("please input an integer between 1-3");
+                break;
+            }
+        }
+            return null;
     }
 
     public void play() {
@@ -68,7 +96,7 @@ public class Game {
                     explore();
                     break;
                 case 3:
-                    save();
+                    save(player);
                     break;
                 default:
                     exit = true;
@@ -78,8 +106,19 @@ public class Game {
     }
 
     public void battle() {
+        Battle combat;
+        if(io.Choice("Would you like to battle a friend or a CPU", "friend", "CPU") ==1){
+            Player player2 = null;
+            player2 = newOrLoad(player2);
+            if(player2 == null){
+                return;
+            }
+            combat = new Battle(player, player2, io);
+
+        }else{
+            combat = new Battle(player, new Enemy(), io);
+        }
         System.out.println("BATTLE!!!!");
-        Battle combat = new Battle(player, new Enemy(), io);
         combat.Start();
     }
 
@@ -123,7 +162,7 @@ public class Game {
         }
     }
 
-    public void save() {
+    public void save(Player p) {
         System.out.println("Saving...");
         File file = new File(".saves\\save-" + player.getName());
         FileWriter fileWriter = null;
@@ -135,7 +174,7 @@ public class Game {
             return;
         }
         try {
-            fileWriter.write(player.toString());
+            fileWriter.write(p.toString());
         } catch (Exception e) {
             System.err.println("there was an error writting to the file" + e.getMessage());
         } finally {
@@ -148,7 +187,7 @@ public class Game {
         }
     }
 
-    public void load() {
+    public Player load() {
         File saveDirectory = new File(".saves");
         ArrayList<File> files = new ArrayList<File>();
         ArrayList<String> characters = new ArrayList<String>();
@@ -159,7 +198,6 @@ public class Game {
             }
         }
 
-        player = new Player(io.readFile(files.get(io.Choice("What Character would you like to Play?", characters) - 1)), io);
-        play();
+        return new Player(io.readFile(files.get(io.Choice("What Character would you like to Play?", characters) - 1)), io);
     }
 }

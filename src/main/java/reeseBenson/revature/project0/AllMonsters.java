@@ -5,6 +5,10 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Random;
 
+import reeseBenson.revature.project0.Monsters.Bubbla;
+import reeseBenson.revature.project0.Monsters.Hissharp;
+import reeseBenson.revature.project0.Monsters.Squidle;
+
 public class AllMonsters {
     private static HashMap<String, Monster> monsterMap = new HashMap<String,Monster>(){
         /**
@@ -16,7 +20,11 @@ public class AllMonsters {
         put("skizard", new Skizard());
         put("faefly", new Faefly());
         put("scutter", new Scutter());
-    }};
+        put("bubbla", new Bubbla());
+        put("squidle", new Squidle());
+        put("hissharp", new Hissharp());
+        }
+    };
 
     public static Monster getMonster(String key){
        return monsterMap.get(key.toLowerCase());

@@ -31,15 +31,22 @@ public class Battle {
             attack(player, enemy);
             if (!enemyMonster.isAlive()){
                 io.write(player.getName() + " has won!");
+                resetMonsters();
                 break;
             }
             printStage();
             attack(enemy, player);
             if (!playerMonster.isAlive()){
                 io.write(enemy.getName() + " has won!");
+                resetMonsters();
                 break;
             }
         }
+    }
+
+    private void resetMonsters(){
+        playerMonster.refresh();
+        enemyMonster.refresh();
     }
 
     public void printStage() {
