@@ -17,14 +17,15 @@ This Project will be a multiplayer game that is like a simple version of pokemon
   - [x] Load a game
     - [x] Load from Local Save
     - [ ] Load from Database save
-  - [ ] Exploration
-    - [ ] move player on map
-    - [ ] Capture Monsters
-  - [ ] Battle
-    - [ ] be able to attack another monster
-    - [ ] be able to flee from battle
-    - [ ] battle a CPU
-    - [ ] battle a friend
+  - [x] Exploration
+    - [x] move player on map
+    - [x] Capture Monsters
+  - [x] Battle
+    - [x] be able to attack another monster
+    - [x] battle a CPU
+    - [x] battle a friend
+  - [ ] Multithreading
+     - [ ] pick up kill signal and ask to save progress on new thread 
   
 ## Usage
  ### Compile
