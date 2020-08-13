@@ -47,7 +47,7 @@ This Project will be a multiplayer game that is like a simple version of pokemon
   - Collections API
     - used many places including list of monsters and player  choice options
   - Concurrency
-    - still working this one out, something with multiplayer maybe??
+    - used to catch and save on a kill signal 
 - Maven 3
     - used to create and manage project
 - JUnit 5
