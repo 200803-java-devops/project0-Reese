@@ -1,4 +1,4 @@
-package reeseBenson.revature.project0;
+package reeseBenson.revature.project0.GameComponents;
 
 import java.util.ArrayList;
 import java.util.HashMap;

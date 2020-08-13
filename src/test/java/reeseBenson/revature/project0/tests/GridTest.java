@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import reeseBenson.revature.project0.Grid;
+import reeseBenson.revature.project0.GameComponents.Grid;
 
 public class GridTest 
 {

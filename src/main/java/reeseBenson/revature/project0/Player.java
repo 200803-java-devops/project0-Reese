@@ -2,42 +2,20 @@ package reeseBenson.revature.project0;
 
 import java.util.ArrayList;
 
-public class Player {
-    private String name;
-    private String face;
-    private ArrayList<Monster> monsters;
-
-    public Player(String name, String face){
-        this.name = name;
-        this.face = face;
-        monsters = new ArrayList<Monster>();
+public class Player extends Actor {
+    MyIO io;
+    public Player(String name, String face, MyIO io){
+        super(name, face);
+        this.io= io;
     }
 
-    public Player(String saveData){
-        String [] data = saveData.split("\n");
-        name = data[0];
-        face = data[1];
-        monsters = new ArrayList<Monster>();
-        Integer.parseInt(data[2]);
-        for(int i = 3; i<data.length; i+=4){
-            Monster curMonster = AllMonsters.getMonster(data[i]);
-            curMonster.name = data[i+1];
-            curMonster.atk = Integer.parseInt(data[i+2]);
-            curMonster.dodgeChance = Integer.parseInt(data[i+3]);
-            monsters.add(curMonster);
-        }
+    public Player(String saveData, MyIO io){
+        super(saveData);
+        this.io = io;
     }
 
-    public String getName(){
-        return name;
-    }
-
-    public String getFace(){
-        return face;
-    }
-
-    public static String pickAFace(){
-        MyIO io = new MyIO();
+    public static String pickAFace(MyIO io){
+        io = new MyIO();
         int choice = 0;
         boolean ok = false;
         ArrayList<String> faces = new ArrayList<String>();
@@ -53,7 +31,6 @@ public class Player {
     }
 
     public void firstMonster(){
-        MyIO io = new MyIO();
         boolean ok = false;
         int choice = 0;
         ArrayList<String> monstersList = new ArrayList<String>();
@@ -71,18 +48,20 @@ public class Player {
         monsters.add(starters.get(choice));       
     }
 
-    public String toString(){
-        String result = "";
-        String nl = "\n";
-        result += name + nl + face + nl + monsters.size() + nl;
-        for(Monster m : monsters){
-            result += m.toString() + "\n";
-        } 
-        return result;
+    @Override
+    public Monster selectMonster(){
+        ArrayList<String> monsters = new ArrayList<String>();  
+        this.monsters.forEach(x -> monsters.add(x.getName() + " the " + x.getType()));
+        Monster combatent = this.getMonster(io.Choice("What monster will you choose?", monsters)-1);
+        currentMonster = combatent;
+        return currentMonster;
     }
 
-    public void addMonster(Monster monster){
-        monsters.add(monster);
+    @Override
+    public Attack selectAttack(){
+        ArrayList<String> attacks = new ArrayList<String>();  
+        currentMonster.attacks.forEach(x -> attacks.add(x.getName()));
+        return currentMonster.getAttack(io.Choice("Choose an attack", attacks)-1);
     }
 
 }

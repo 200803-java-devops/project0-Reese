@@ -1,5 +1,8 @@
 package reeseBenson.revature.project0;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public abstract class Monster {
     protected String name;
     protected String type;
@@ -8,13 +11,15 @@ public abstract class Monster {
     protected int maxHealth;
     protected int atk;
     protected int dodgeChance;
-    //list  of attacks
+    protected ArrayList<Attack> attacks;
     
     Monster(){
         health = 100;
         maxHealth = 100;
         atk = 1;
-        dodgeChance= 0;
+        dodgeChance = 1;
+        attacks = new ArrayList<Attack>();
+        attacks.add(new Attack("Ram", 5 , 2));
     }
 
     public Monster createInstance(){
@@ -33,13 +38,12 @@ public abstract class Monster {
         return type;
     }
 
-    public String getArt(){
-        return art;
+    public boolean isAlive(){
+        return health > 0;
     }
 
-    public int AttemptAttack(int chanceToHit){
-        //return rng of attack hit chance
-        return chanceToHit;
+    public String getArt(){
+        return art;
     }
 
     public String toString(){
@@ -50,15 +54,41 @@ public abstract class Monster {
 
 
     public int dodge(){
-        // rng out off dodge chance 
-        return dodgeChance;
+        if(dodgeChance > 0){
+            return new Random().nextInt(dodgeChance);
+        }
+        return 0;
     }
 
     public void takeDamage(int damage){
         health -= damage;
     }
 
+    public int getHealth(){
+        return health;
+    }
+
+    public int getMaxHealth(){
+        return maxHealth;
+    }
+
     public void refresh(){
         health = maxHealth;
+    }
+
+    public Attack randomAttack(){
+        int choice = new Random().nextInt(attacks.size());
+        return attacks.get(choice);
+    }
+
+    public Attack getAttack(int i){
+        if(attacks.size()-1 < i || i < 0){
+            return attacks.get(attacks.size()-1);
+        }
+        return attacks.get(i);
+    }
+
+    public ArrayList<Attack> getAttacks(){
+        return attacks;
     }
 }

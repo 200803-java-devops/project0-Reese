@@ -8,7 +8,9 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import reeseBenson.revature.project0.AllMonsters;
-import reeseBenson.revature.project0.Grid;
+import reeseBenson.revature.project0.Enemy;
+import reeseBenson.revature.project0.GameComponents.Battle;
+import reeseBenson.revature.project0.GameComponents.Grid;
 import reeseBenson.revature.project0.Monster;
 import reeseBenson.revature.project0.MyIO;
 import reeseBenson.revature.project0.Player;
@@ -50,8 +52,7 @@ public class Game {
     }
 
     public void create() {
-        player = new Player(io.getXcharsUpperCase("What is your Name? [3 chars max]", "Hello ", 3, true),
-                Player.pickAFace());
+        player = new Player(io.getXcharsUpperCase("What is your Name? [3 chars max]", "Hello ", 3, true), Player.pickAFace(io), io);
         player.firstMonster();
         play();
     }
@@ -78,8 +79,8 @@ public class Game {
 
     public void battle() {
         System.out.println("BATTLE!!!!");
-        for (int i = 0; i < 10000000; i++)
-            ;
+        Battle combat = new Battle(player, new Enemy(), io);
+        combat.Start();
     }
 
     public void explore() {
@@ -158,8 +159,7 @@ public class Game {
             }
         }
 
-        player = new Player(
-                io.readFile(files.get(io.Choice("What Character would you like to Play?", characters) - 1)));
+        player = new Player(io.readFile(files.get(io.Choice("What Character would you like to Play?", characters) - 1)), io);
         play();
     }
 }
