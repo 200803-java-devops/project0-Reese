@@ -129,7 +129,8 @@ public class MyIO {
                 out.println(message);
             }
             try {
-                choice = input.readLine().subSequence(0, 1);
+                String line = input.readLine(); 
+                choice = line.length() > 0 ? line.subSequence(0, 1) : "\n";
             } catch (IOException e) {
                 System.err.println("Failed to read input");
                 e.printStackTrace();
