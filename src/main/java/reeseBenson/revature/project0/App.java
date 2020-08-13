@@ -6,7 +6,7 @@ public class App
 {
     public static void main( String[] args )
     {
-      Game game = new Game();
+      Game game = new Game(new MyIO());
       game.start();
     }
 }

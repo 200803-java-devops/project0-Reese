@@ -21,8 +21,8 @@ public class Game {
     Player player;
     Grid grid;
 
-    public Game() {
-        io = new MyIO();
+    public Game(MyIO io) {
+        this.io = io;
     }
 
     public void start() {
