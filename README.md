@@ -16,7 +16,7 @@ This Project will be a multiplayer game that is like a simple version of pokemon
     - [ ] Database save
   - [x] Load a game
     - [x] Load from Local Save
-    - [ ] Load from Database save
+    - [x] Load from Database save
   - [x] Exploration
     - [x] move player on map
     - [x] Capture Monsters
