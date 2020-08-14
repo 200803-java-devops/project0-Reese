@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import reeseBenson.revature.project0.AllMonsters;
@@ -15,15 +15,19 @@ import reeseBenson.revature.project0.GameComponents.Grid;
 import reeseBenson.revature.project0.Monster;
 import reeseBenson.revature.project0.MyIO;
 import reeseBenson.revature.project0.Player;
-import reeseBenson.revature.project0.Actors.PlayerFactory;
+import reeseBenson.revature.project0.Data.PlayerDAO;
+import reeseBenson.revature.project0.Data.PlayerRepo;
+import reeseBenson.revature.project0.Factories.PlayerFactory;
 
 public class Game {
     MyIO io;
     Player player;
     Grid grid;
+    PlayerRepo playerRepo;
     
     public Game(MyIO io) {
         this.io = io;
+        this.playerRepo = new PlayerRepo(new PlayerDAO(), io);
     }
 
     public void start() {
@@ -188,17 +192,16 @@ public class Game {
         }
     }
 
-    public Player load() {
-        File saveDirectory = new File(".saves");
-        ArrayList<File> files = new ArrayList<File>();
-        ArrayList<String> characters = new ArrayList<String>();
-        for (File file : saveDirectory.listFiles()) {
-            if (file.getName().contains("save-")) {
-                files.add(file);
-                characters.add(file.getName().substring(5));
-            }
+    public Player load() { 
+        if(io.Choice("Load Local Save or from DB?", "local", "Database")==1){
+             return PlayerFactory.localLoad(io);
+        } 
+        else{
+            String username = io.getLine("What is your userName:");
+            List<Player> players = playerRepo.getAllFromUser(username);
+            List<String> playerNames = new ArrayList<String>();
+            players.forEach(p -> playerNames.add(p.getName()));
+            return players.get(io.Choice("What Character would you like to play?", playerNames)-1);
         }
-
-        return new Player(io.readFile(files.get(io.Choice("What Character would you like to Play?", characters) - 1)), io);
     }
 }

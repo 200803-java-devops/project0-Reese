@@ -8,7 +8,6 @@ import java.util.HashMap;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import reeseBenson.revature.project0.GameComponents.Grid;
 

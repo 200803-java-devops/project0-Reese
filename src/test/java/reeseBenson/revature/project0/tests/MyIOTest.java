@@ -5,16 +5,12 @@ import static org.junit.Assert.assertEquals;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.StringBufferInputStream;
-import java.nio.file.Files;
-
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import reeseBenson.revature.project0.MyIO;

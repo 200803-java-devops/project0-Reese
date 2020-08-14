@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.util.ArrayList;
+import java.util.List;
 
 public class MyIO {
     private BufferedReader input;
@@ -48,17 +48,17 @@ public class MyIO {
                     "** ------------------------------------------------------------------------------------------------------------------- **\n\n");
             
     }
-    public int Choice(String message, ArrayList<String> choices){
+    public int Choice(String message, List<String> playerNames){
         int result = 0;
         while(result==0){
             out.println(message);
-            for(int i=0; i< choices.size(); i++){
-                out.println((i+1) + "] " + choices.get(i));
+            for(int i=0; i< playerNames.size(); i++){
+                out.println((i+1) + "] " + playerNames.get(i));
             }
             result = getlineAsInt();
-            if(result > choices.size()){
+            if(result > playerNames.size()){
                 result = 0;
-                out.println("please input an integer between 1 and " + choices.size());
+                out.println("please input an integer between 1 and " + playerNames.size());
             }
         }
         return result;
@@ -138,4 +138,15 @@ public class MyIO {
         } while (!c.contains(choice));
         return choice;
     }
+	public String getLine(String string) {
+        out.print(string);
+        String result = "";
+         try {
+            result = input.readLine();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return result;
+	}
 }

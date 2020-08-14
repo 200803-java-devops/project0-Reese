@@ -1,6 +1,5 @@
 package reeseBenson.revature.project0;
 
-import java.util.Random;
 
 public class Enemy extends Actor{
 

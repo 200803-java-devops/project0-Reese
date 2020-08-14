@@ -1,6 +1,7 @@
 package reeseBenson.revature.project0;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player extends Actor {
     MyIO io;
@@ -14,7 +15,12 @@ public class Player extends Actor {
         this.io = io;
     }
 
-    public static String pickAFace(MyIO io){
+    public Player(String name, String face, List<Monster> monsters, MyIO io) {
+        super(name,face,monsters);
+        this.io = io;
+    }
+
+	public static String pickAFace(MyIO io){
         io = new MyIO();
         int choice = 0;
         boolean ok = false;

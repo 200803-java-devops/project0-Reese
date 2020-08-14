@@ -1,12 +1,13 @@
 package reeseBenson.revature.project0;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public abstract class Actor {
     private String name;
     private String face;
-    protected ArrayList<Monster> monsters;
+    protected List<Monster> monsters;
     protected Monster currentMonster;
 
     public Actor(String name, String face){
@@ -30,7 +31,13 @@ public abstract class Actor {
         }
     }
 
-    public String getName(){
+    public Actor(String name, String face, List<Monster> monsters) {
+        this.name = name;
+        this.face = face;
+        this.monsters = monsters;
+	}
+
+	public String getName(){
         return name;
     }
 
