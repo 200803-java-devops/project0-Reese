@@ -22,6 +22,10 @@ public abstract class Monster {
         attacks.add(new Attack("Ram", 5 , 2));
     }
 
+    public int getDodgeChance() {
+        return dodgeChance;
+    }
+    
     public Monster createInstance(){
         return new Skizard();
     }

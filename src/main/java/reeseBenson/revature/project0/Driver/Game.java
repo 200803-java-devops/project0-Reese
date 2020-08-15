@@ -15,6 +15,7 @@ import reeseBenson.revature.project0.GameComponents.Grid;
 import reeseBenson.revature.project0.Monster;
 import reeseBenson.revature.project0.MyIO;
 import reeseBenson.revature.project0.Player;
+import reeseBenson.revature.project0.Data.MonsterDAO;
 import reeseBenson.revature.project0.Data.PlayerDAO;
 import reeseBenson.revature.project0.Data.PlayerRepo;
 import reeseBenson.revature.project0.Factories.PlayerFactory;
@@ -27,7 +28,7 @@ public class Game {
     
     public Game(MyIO io) {
         this.io = io;
-        this.playerRepo = new PlayerRepo(new PlayerDAO(), io);
+        this.playerRepo = new PlayerRepo(new PlayerDAO(), new MonsterDAO(), io);
     }
 
     public void start() {
@@ -58,7 +59,7 @@ public class Game {
                     System.err.println("please input an integer between 1-3");
                     return true;
             }
-            Runtime.getRuntime().addShutdownHook(new Thread(() -> save(player)));
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> saveLocal(player)));
             play();
             return true;
     }
@@ -167,7 +168,16 @@ public class Game {
         }
     }
 
-    public void save(Player p) {
+    public void save(Player p){
+        if(io.Choice("Save Locally or in Database?", "Local" , "DB") ==1){
+            saveLocal(p);
+        }else{
+            String username = io.getLine("Enter Username:");
+            playerRepo.SavePlayer(username, player);
+        }
+    }
+
+    public void saveLocal(Player p) {
         System.out.println("Saving...");
         File file = new File(".saves\\save-" + player.getName());
         FileWriter fileWriter = null;

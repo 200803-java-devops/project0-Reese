@@ -9,9 +9,10 @@ import java.util.List;
 import reeseBenson.revature.project0.AllMonsters;
 import reeseBenson.revature.project0.Monster;
 
-public class PlayerDAO implements IDAO<PlayerEntity, Integer> {
+public class PlayerDAO implements IUserBasedDAO<PlayerEntity, String> {
 
-    public List<PlayerEntity> getAllForUser(String UserName) {
+    @Override
+    public List<PlayerEntity> getAll(String UserName) {
         List<PlayerEntity> result = new ArrayList<PlayerEntity>();
         String sql = "Select * from PlayerCharacters where username = ?";
         try {
@@ -22,15 +23,19 @@ public class PlayerDAO implements IDAO<PlayerEntity, Integer> {
             while(!resultSet.isAfterLast()){
                 String name = resultSet.getString("charactername");
                 String face = resultSet.getString("face");
-                List<Monster> monsters = new ArrayList<Monster>();
+                int id = resultSet.getInt("playerID");
+                List<MonsterEntity> monsters = new ArrayList<MonsterEntity>();
                 while(!resultSet.isAfterLast() && name.equals(resultSet.getString("charactername"))){
                  String type = resultSet.getString("monstertype");
-                 Monster m = AllMonsters.getMonster(type).createInstance();
-                 m.setName(resultSet.getString("monstername"));
+                 String Monstername = resultSet.getString("monstername");
+                 int atk = resultSet.getInt("atk");
+                 int dodgeChance = resultSet.getInt("dodgeChance");
+                 int monsterId = resultSet.getInt("monsterid");
+                 MonsterEntity m = new MonsterEntity(id, Monstername, type, atk, dodgeChance, monsterId); 
                   monsters.add(m);
                   resultSet.next();
                 }
-                result.add(new PlayerEntity(face, name, monsters));
+                result.add(new PlayerEntity(face, name, id, monsters));
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -40,33 +45,74 @@ public class PlayerDAO implements IDAO<PlayerEntity, Integer> {
     }
     
     @Override
-    public PlayerEntity get(Integer id) {
-        // TODO Auto-generated method stub
-        return null;
+    public PlayerEntity get(String Username, String characterName) {
+        PlayerEntity result = null;
+        String sql = "Select * from PlayerCharacters where username = ? and charactername = ?";
+        try {
+            PreparedStatement statement = ConnectionUtils.getConnection().prepareStatement(sql);
+            statement.setString(1, Username);
+            statement.setString(2, characterName);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            String name = resultSet.getString("charactername");
+            String face = resultSet.getString("face");
+            int id = resultSet.getInt("playerID");
+            List<MonsterEntity> monsters = new ArrayList<MonsterEntity>();
+            while(!resultSet.isAfterLast() && name.equals(resultSet.getString("charactername"))){
+                String type = resultSet.getString("monstertype");
+                String Monstername = resultSet.getString("monstername");
+                int atk = resultSet.getInt("atk");
+                int dodgeChance = resultSet.getInt("dodgeChance");
+                int monsterId = resultSet.getInt("monsterid");
+                MonsterEntity m = new MonsterEntity(id, Monstername, type, atk, dodgeChance, monsterId);
+                monsters.add(m);
+                resultSet.next();
+            }
+                result = new PlayerEntity(face, name, id, monsters);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @Override
-    public List<PlayerEntity> getAll() {
-        // TODO Auto-generated method stub
-        return null;
+    public void update(String username, PlayerEntity obj) {
+        String sql = "Update Player set face=? where username=? and charactername = ?";
+        try {
+            PreparedStatement statement = ConnectionUtils.getConnection().prepareStatement(sql);
+            statement.setString(2, username);
+            statement.setString(3, obj.getName());
+            statement.setString(1, obj.getFace());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            System.err.println("error updating player");
+            e.printStackTrace();
+        }
+        return;
     }
 
     @Override
-    public void update(PlayerEntity obj) {
+    public void delete(String username, PlayerEntity obj) {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public void delete(PlayerEntity obj) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void create(PlayerEntity obj) {
-        // TODO Auto-generated method stub
-
+    public void create(String username, PlayerEntity obj) {
+        String sql = "insert into Player(Username, CharacterName, Face) values (?,?,?);";
+        try {
+            PreparedStatement statement = ConnectionUtils.getConnection().prepareStatement(sql);
+            statement.setString(1, username);
+            statement.setString(2, obj.getName());
+            statement.setString(3, obj.getFace());
+            statement.executeQuery();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            System.err.println("error inserting into player");
+            e.printStackTrace();
+        }
     }
     
 }

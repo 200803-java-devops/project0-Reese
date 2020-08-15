@@ -30,7 +30,11 @@ public class PlayerFactory {
     }
 
     public static Player createFromEntity(PlayerEntity entity, MyIO io){
-        return new Player(entity.getName(), entity.getFace(), entity.getMonsters(), io);  
+        return new Player(entity.getName(), entity.getFace(),MonsterFactory.createFromEntities(entity.getMonsters()), io);  
+    }
+
+    public static PlayerEntity createEntityFromModel(Player p){
+        return new PlayerEntity(p.getFace(), p.getName(), 0, MonsterFactory.createEntityFromList(p.getMonsters()));
     }
 
 

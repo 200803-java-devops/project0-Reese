@@ -16,18 +16,18 @@ create table Player(
 insert into Player(Username, CharacterName, Face) values ('Me','ME', '(0.0)');
 
 create table PlayerMonsters(
+    monsterId SERIAL PRIMARY Key,
     playerId int,
     monsterName varChar(32),
     monsterType varchar(32),
     atk int,
     dodgeChance int,
-    PRIMARY KEY (playerId, monsterName),
     Foreign KEY (playerId) references Player(playerId)
 );
 
 insert into PlayerMonsters(playerId, monsterName, monsterType, atk, dodgeChance) values (1, 'monsterName', 'Skizard', 5, 10);
 
 Create view PlayerCharacters as
-select player.username, charactername, face, monstername, monstertype, atk, dodgechance from Account 
+select player.playerid, player.username, charactername, face, monsterid, monstername, monstertype, atk, dodgechance from Account 
 join player on Account.username = player.username
 join playermonsters on playermonsters.playerid = player.playerid;

@@ -7,13 +7,19 @@ import reeseBenson.revature.project0.Monster;
 public class PlayerEntity {
     private String face;
     private String name;
-    private List<Monster> monsters;
+    private int id;
+    private List<MonsterEntity> monsters;
 
-    public PlayerEntity(String face, String name, List<Monster> monsters){
+    public PlayerEntity(String face, String name, int id, List<MonsterEntity> monsters){
+        this.id = id;
         this.face = face;
         this.name = name;
         this.monsters = monsters;
-    }    
+    }
+    
+    public int getId() {
+        return id;
+    }
     
     public String getName() {
         return name;
@@ -23,7 +29,7 @@ public class PlayerEntity {
         return face;
     }
 
-    public List<Monster> getMonsters() {
+    public List<MonsterEntity> getMonsters() {
         return monsters;
     }
     
