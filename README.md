@@ -13,7 +13,7 @@ This Project will be a multiplayer game that is like a simple version of pokemon
     - [x] let a player pick between starting monsters
   - [x] Save a game
     - [x] Local Save
-    - [ ] Database save
+    - [x] Database save
   - [x] Load a game
     - [x] Load from Local Save
     - [x] Load from Database save
@@ -26,6 +26,8 @@ This Project will be a multiplayer game that is like a simple version of pokemon
     - [x] battle a friend
   - [x] Multithreading
      - [x] pick up kill signal and ask to save progress on new thread 
+  - [x] Create an Account with username and password on DB
+    - [ ] salt and hash password
   
 ## Usage
  ### Compile

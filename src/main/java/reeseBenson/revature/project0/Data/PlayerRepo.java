@@ -42,8 +42,7 @@ public class PlayerRepo {
 
         }else{
             Dao.create(username, PlayerFactory.createEntityFromModel(player));
-            entity = Dao.get(username, player.getName());
-            int playerId = entity.getId();
+            int playerId = Dao.getId(username, player.getName());
             player.getMonsters().forEach(m -> MDAO.create(new MonsterEntity(m, playerId)));
         }
     }

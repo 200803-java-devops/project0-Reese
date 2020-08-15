@@ -15,6 +15,7 @@ import reeseBenson.revature.project0.GameComponents.Grid;
 import reeseBenson.revature.project0.Monster;
 import reeseBenson.revature.project0.MyIO;
 import reeseBenson.revature.project0.Player;
+import reeseBenson.revature.project0.Data.AccountDAO;
 import reeseBenson.revature.project0.Data.MonsterDAO;
 import reeseBenson.revature.project0.Data.PlayerDAO;
 import reeseBenson.revature.project0.Data.PlayerRepo;
@@ -172,7 +173,24 @@ public class Game {
         if(io.Choice("Save Locally or in Database?", "Local" , "DB") ==1){
             saveLocal(p);
         }else{
-            String username = io.getLine("Enter Username:");
+            String username = "";
+            String password = "";
+            String msg = "";
+           if(io.yesOrNO("Do you have an account already?")){
+                username = io.getLine("Enter Username:");
+                password = io.getLine("Enter Password:");
+                msg ="Failed to create account";
+            }else{
+                username = io.getLine("Enter new Username:");
+                password = io.getLine("Enter new Password:");
+                new AccountDAO().Create(username, password);
+                msg = "Failed to Save: The Account you requested does not exsist.\nEnsure you have the correct username and password.";
+            }
+            if(!new AccountDAO().Exists(username, password)){
+                io.write(msg);
+                return;
+            }
+            io.write("Saving...");
             playerRepo.SavePlayer(username, player);
         }
     }

@@ -54,21 +54,38 @@ public class PlayerDAO implements IUserBasedDAO<PlayerEntity, String> {
             statement.setString(2, characterName);
             ResultSet resultSet = statement.executeQuery();
             resultSet.next();
-            String name = resultSet.getString("charactername");
-            String face = resultSet.getString("face");
-            int id = resultSet.getInt("playerID");
-            List<MonsterEntity> monsters = new ArrayList<MonsterEntity>();
-            while(!resultSet.isAfterLast() && name.equals(resultSet.getString("charactername"))){
-                String type = resultSet.getString("monstertype");
-                String Monstername = resultSet.getString("monstername");
-                int atk = resultSet.getInt("atk");
-                int dodgeChance = resultSet.getInt("dodgeChance");
-                int monsterId = resultSet.getInt("monsterid");
-                MonsterEntity m = new MonsterEntity(id, Monstername, type, atk, dodgeChance, monsterId);
-                monsters.add(m);
-                resultSet.next();
-            }
+                String name = resultSet.getString("charactername");
+                String face = resultSet.getString("face");
+                int id = resultSet.getInt("playerID");
+                List<MonsterEntity> monsters = new ArrayList<MonsterEntity>();
+                while(!resultSet.isAfterLast() && name.equals(resultSet.getString("charactername"))){
+                    String type = resultSet.getString("monstertype");
+                    String Monstername = resultSet.getString("monstername");
+                    int atk = resultSet.getInt("atk");
+                    int dodgeChance = resultSet.getInt("dodgeChance");
+                    int monsterId = resultSet.getInt("monsterid");
+                    MonsterEntity m = new MonsterEntity(id, Monstername, type, atk, dodgeChance, monsterId);
+                    monsters.add(m);
+                    resultSet.next();
+                }
                 result = new PlayerEntity(face, name, id, monsters);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            //e.printStackTrace();
+        }
+        return result;
+    }
+
+    public int getId(String Username, String characterName) {
+        int result = 0;
+        String sql = "Select playerId from Player where username = ? and charactername = ?";
+        try {
+            PreparedStatement statement = ConnectionUtils.getConnection().prepareStatement(sql);
+            statement.setString(1, Username);
+            statement.setString(2, characterName);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            result = resultSet.getInt("playerId");   
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -107,7 +124,7 @@ public class PlayerDAO implements IUserBasedDAO<PlayerEntity, String> {
             statement.setString(1, username);
             statement.setString(2, obj.getName());
             statement.setString(3, obj.getFace());
-            statement.executeQuery();
+            statement.executeUpdate();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             System.err.println("error inserting into player");
