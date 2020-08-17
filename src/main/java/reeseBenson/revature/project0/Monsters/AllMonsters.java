@@ -1,12 +1,9 @@
-package reeseBenson.revature.project0;
+package reeseBenson.revature.project0.Monsters;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Random;
 
-import reeseBenson.revature.project0.Monsters.Bubbla;
-import reeseBenson.revature.project0.Monsters.Hissharp;
-import reeseBenson.revature.project0.Monsters.Squidle;
 /**
  * A class used to return new monsters from a string to Monster hashMap of monsters
  */

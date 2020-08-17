@@ -1,7 +1,8 @@
-package reeseBenson.revature.project0;
+package reeseBenson.revature.project0.Actors;
 
+import reeseBenson.revature.project0.Monsters.AllMonsters;
 
-public class Enemy extends Actor{
+public class Enemy extends Actor {
 
     /**
      * Creates a new basic enemy Actor.

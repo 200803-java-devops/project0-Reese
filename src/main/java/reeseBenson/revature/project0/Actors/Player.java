@@ -1,7 +1,12 @@
-package reeseBenson.revature.project0;
+package reeseBenson.revature.project0.Actors;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import reeseBenson.revature.project0.MyIO;
+import reeseBenson.revature.project0.Monsters.AllMonsters;
+import reeseBenson.revature.project0.Monsters.Monster;
+import reeseBenson.revature.project0.Monsters.Attacks.Attack;
 
 public class Player extends Actor {
     private MyIO io;
@@ -77,9 +82,9 @@ public class Player extends Actor {
         int choice = 0;
         ArrayList<String> monstersList = new ArrayList<String>();
         ArrayList<Monster> starters = new ArrayList<Monster>();
-        starters.add(new Skizard());
-        starters.add(new Faefly());
-        starters.add(new Scutter());
+        starters.add(AllMonsters.getMonster("skizard"));
+        starters.add(AllMonsters.getMonster("faefly"));
+        starters.add(AllMonsters.getMonster("scutter"));
         for(Monster mon : starters){
             monstersList.add("\t"+ mon.getType() + "\n" + mon.getArt()); 
         }
@@ -102,7 +107,7 @@ public class Player extends Actor {
     @Override
     public Attack selectAttack(){
         ArrayList<String> attacks = new ArrayList<String>();  
-        currentMonster.attacks.forEach(x -> attacks.add(x.getName()));
+        currentMonster.getAttacks().forEach(x -> attacks.add(x.getName()));
         return currentMonster.getAttack(io.Choice("Choose an attack", attacks)-1);
     }
 

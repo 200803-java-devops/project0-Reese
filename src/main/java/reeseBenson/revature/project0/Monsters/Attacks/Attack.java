@@ -1,6 +1,8 @@
-package reeseBenson.revature.project0;
+package reeseBenson.revature.project0.Monsters.Attacks;
 
 import java.util.Random;
+
+import reeseBenson.revature.project0.Monsters.Monster;
 
 public class Attack {
     private String name;

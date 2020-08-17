@@ -8,18 +8,18 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import reeseBenson.revature.project0.AllMonsters;
-import reeseBenson.revature.project0.Enemy;
-import reeseBenson.revature.project0.GameComponents.Battle;
-import reeseBenson.revature.project0.GameComponents.Grid;
-import reeseBenson.revature.project0.Monster;
 import reeseBenson.revature.project0.MyIO;
-import reeseBenson.revature.project0.Player;
+import reeseBenson.revature.project0.Actors.Enemy;
+import reeseBenson.revature.project0.Actors.Player;
 import reeseBenson.revature.project0.Data.AccountDAO;
 import reeseBenson.revature.project0.Data.MonsterDAO;
 import reeseBenson.revature.project0.Data.PlayerDAO;
 import reeseBenson.revature.project0.Data.PlayerRepo;
 import reeseBenson.revature.project0.Factories.PlayerFactory;
+import reeseBenson.revature.project0.GameComponents.Battle;
+import reeseBenson.revature.project0.GameComponents.Grid;
+import reeseBenson.revature.project0.Monsters.AllMonsters;
+import reeseBenson.revature.project0.Monsters.Monster;
 /**
  * The Game Class is is a Class the prints to a given output steam a game for the users to play, accepting input from the given input stream.
  * Usage: Game game = new Game(MyIO io);

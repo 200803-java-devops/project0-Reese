@@ -1,7 +1,6 @@
 package reeseBenson.revature.project0.Monsters;
 
-import reeseBenson.revature.project0.Attack;
-import reeseBenson.revature.project0.Monster;
+import reeseBenson.revature.project0.Monsters.Attacks.Attack;
 
 public class Hissharp extends Monster {
     /**
@@ -21,6 +20,7 @@ public class Hissharp extends Monster {
     /**
      * Return a new Hissharp
      */
+    @Override
     public Monster createInstance(){
         return new Hissharp();
     }

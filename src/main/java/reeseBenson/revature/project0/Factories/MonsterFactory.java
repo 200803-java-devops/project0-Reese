@@ -3,9 +3,9 @@ package reeseBenson.revature.project0.Factories;
 import java.util.ArrayList;
 import java.util.List;
 
-import reeseBenson.revature.project0.AllMonsters;
-import reeseBenson.revature.project0.Monster;
 import reeseBenson.revature.project0.Data.MonsterEntity;
+import reeseBenson.revature.project0.Monsters.AllMonsters;
+import reeseBenson.revature.project0.Monsters.Monster;
 /**
  * This class is designed to create new monsters.
  */

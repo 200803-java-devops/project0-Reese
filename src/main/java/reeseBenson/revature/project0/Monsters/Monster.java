@@ -1,7 +1,9 @@
-package reeseBenson.revature.project0;
+package reeseBenson.revature.project0.Monsters;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import reeseBenson.revature.project0.Monsters.Attacks.Attack;
 
 /**
  * An abstract class repersenting A monster that an Actor can use to battle with.
@@ -35,6 +37,14 @@ public abstract class Monster {
     public int getDodgeChance() {
         return dodgeChance;
     }
+
+    /**
+     * Sets the dodge chance
+     * @param dodgeChance the dodge chance to set
+     */
+    public void setDodgeChance(int dodgeChance) {
+        this.dodgeChance = dodgeChance;
+    }
     
     /**
      * Creates an instance of the type of monster, should be overriden by sub class return null by default
@@ -51,6 +61,15 @@ public abstract class Monster {
     public int getAtk(){
         return atk;
     }
+    
+    /**
+     * The Atk of the monster is set
+     * @param atk
+     */
+    public void setAtk(int atk) {
+        this.atk = atk;
+    }
+
 /**
  *  Name getter function. 
  * @return the name of the Monster.

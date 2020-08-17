@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import reeseBenson.revature.project0.MyIO;
-import reeseBenson.revature.project0.Player;
+import reeseBenson.revature.project0.Actors.Player;
 import reeseBenson.revature.project0.Data.PlayerEntity;
 
 public class PlayerFactory {

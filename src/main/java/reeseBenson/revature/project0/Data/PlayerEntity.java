@@ -2,7 +2,6 @@ package reeseBenson.revature.project0.Data;
 
 import java.util.List;
 
-import reeseBenson.revature.project0.Monster;
 
 public class PlayerEntity {
     private String face;

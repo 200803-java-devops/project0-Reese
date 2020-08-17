@@ -1,6 +1,8 @@
-package reeseBenson.revature.project0;
+package reeseBenson.revature.project0.Monsters;
 
-public class  Skizard extends Monster {
+import reeseBenson.revature.project0.Monsters.Attacks.Attack;
+
+public class Skizard extends Monster {
     /**
      * Creates a new Skiizard
      */

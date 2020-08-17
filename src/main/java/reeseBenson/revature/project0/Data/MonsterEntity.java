@@ -1,6 +1,6 @@
 package reeseBenson.revature.project0.Data;
 
-import reeseBenson.revature.project0.Monster;
+import reeseBenson.revature.project0.Monsters.Monster;
 
 public class MonsterEntity {
     private int monsterId;

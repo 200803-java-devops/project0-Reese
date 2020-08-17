@@ -1,7 +1,6 @@
 package reeseBenson.revature.project0.Monsters;
 
-import reeseBenson.revature.project0.Attack;
-import reeseBenson.revature.project0.Monster;
+import reeseBenson.revature.project0.Monsters.Attacks.Attack;
 
 public class Squidle extends Monster {
     /**
@@ -18,9 +17,11 @@ public class Squidle extends Monster {
         attacks.add(new Attack("Ink Gun", 2, 10));
         attacks.add(new Attack("Watter Squirt", 8, 2));
     }
+
     /**
      * Returns a new Squidle
      */
+    @Override
     public Monster createInstance(){
         return new Bubbla();
     }

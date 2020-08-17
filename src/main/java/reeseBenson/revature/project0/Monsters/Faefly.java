@@ -1,6 +1,8 @@
-package reeseBenson.revature.project0;
+package reeseBenson.revature.project0.Monsters;
 
-public class Faefly extends Monster{
+import reeseBenson.revature.project0.Monsters.Attacks.Attack;
+
+public class Faefly extends Monster {
     /**
      * Creates a new Faefly
      */

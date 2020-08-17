@@ -2,10 +2,10 @@ package reeseBenson.revature.project0.GameComponents;
 
 import java.util.concurrent.TimeUnit;
 
-import reeseBenson.revature.project0.Actor;
-import reeseBenson.revature.project0.Attack;
-import reeseBenson.revature.project0.Monster;
 import reeseBenson.revature.project0.MyIO;
+import reeseBenson.revature.project0.Actors.Actor;
+import reeseBenson.revature.project0.Monsters.Monster;
+import reeseBenson.revature.project0.Monsters.Attacks.Attack;
 
 public class Battle {
     Monster playerMonster;

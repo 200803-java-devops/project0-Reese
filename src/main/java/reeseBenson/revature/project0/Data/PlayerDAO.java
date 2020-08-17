@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import reeseBenson.revature.project0.AllMonsters;
-import reeseBenson.revature.project0.Monster;
 
 public class PlayerDAO implements IUserBasedDAO<PlayerEntity, String> {
 

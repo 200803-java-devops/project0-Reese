@@ -1,7 +1,6 @@
 package reeseBenson.revature.project0.Monsters;
 
-import reeseBenson.revature.project0.Attack;
-import reeseBenson.revature.project0.Monster;
+import reeseBenson.revature.project0.Monsters.Attacks.Attack;
 
 public class Bubbla extends Monster {
     /**
@@ -18,9 +17,11 @@ public class Bubbla extends Monster {
         attacks.add(new Attack("Bubble Burst", 10, 1));
         attacks.add(new Attack("Puff", 4, 3));
     }
+    
     /**
      * Returns a new Bubbla
      */
+    @Override
     public Monster createInstance(){
         return new Bubbla();
     }

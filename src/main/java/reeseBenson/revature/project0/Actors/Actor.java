@@ -1,8 +1,12 @@
-package reeseBenson.revature.project0;
+package reeseBenson.revature.project0.Actors;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import reeseBenson.revature.project0.Monsters.AllMonsters;
+import reeseBenson.revature.project0.Monsters.Monster;
+import reeseBenson.revature.project0.Monsters.Attacks.Attack;
 
 /**
  * The abstract class repersenting the characters that can hold monsters and battle in the game.
@@ -42,9 +46,9 @@ public abstract class Actor {
         Integer.parseInt(data[2]);
         for(int i = 3; i<data.length; i+=4){
             Monster curMonster = AllMonsters.getMonster(data[i]);
-            curMonster.name = data[i+1];
-            curMonster.atk = Integer.parseInt(data[i+2]);
-            curMonster.dodgeChance = Integer.parseInt(data[i+3]);
+            curMonster.setName(data[i+1]);
+            curMonster.setAtk(Integer.parseInt(data[i+2]));
+            curMonster.setDodgeChance(Integer.parseInt(data[i+3]));
             monsters.add(curMonster);
         }
     }

@@ -1,6 +1,8 @@
-package reeseBenson.revature.project0;
+package reeseBenson.revature.project0.Monsters;
 
-public class  Scutter extends Monster {
+import reeseBenson.revature.project0.Monsters.Attacks.Attack;
+
+public class Scutter extends Monster {
     /**
      * Returns a new Scutter
      */
