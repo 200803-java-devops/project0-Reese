@@ -20,18 +20,30 @@ import reeseBenson.revature.project0.Data.MonsterDAO;
 import reeseBenson.revature.project0.Data.PlayerDAO;
 import reeseBenson.revature.project0.Data.PlayerRepo;
 import reeseBenson.revature.project0.Factories.PlayerFactory;
-
+/**
+ * The Game Class is is a Class the prints to a given output steam a game for the users to play, accepting input from the given input stream.
+ * Usage: Game game = new Game(MyIO io);
+ *        game.start();
+ */
 public class Game {
     MyIO io;
     Player player;
     Grid grid;
     PlayerRepo playerRepo;
-    
+    /**
+     * The Constructor for the Game object.
+     * @param io A class containing the standard input and output streams the game will write to.
+     */
     public Game(MyIO io) {
         this.io = io;
         this.playerRepo = new PlayerRepo(new PlayerDAO(), new MonsterDAO(), io);
     }
 
+    /**
+     * Prints the title screen to the provided output stream, in other terms starts the game.
+     *@since v1.0 8/17/2020
+     *@author Reese Benson
+     */
     public void start() {
         boolean play = true;
         // loop back to start screen
@@ -92,7 +104,7 @@ public class Game {
             return null;
     }
 
-    public void play() {
+    private void play() {
         boolean exit = false;
         while (!exit) {
             switch (io.Choice("Would you like to:", "battle", "Catch Monsters", "Save", "return to main menu")) {
@@ -112,7 +124,7 @@ public class Game {
         }
     }
 
-    public void battle() {
+    private void battle() {
         Battle combat;
         if(io.Choice("Would you like to battle a friend or a CPU", "friend", "CPU") ==1){
             Player player2 = null;
@@ -129,7 +141,7 @@ public class Game {
         combat.Start();
     }
 
-    public void explore() {
+    private void explore() {
         System.out.println("Explore!!");
         HashMap<String, String> hashMap = new HashMap<String, String>();
         hashMap.put("0,0", "M");
@@ -169,7 +181,7 @@ public class Game {
         }
     }
 
-    public void save(Player p){
+    private void save(Player p){
         if(io.Choice("Save Locally or in Database?", "Local" , "DB") ==1){
             saveLocal(p);
         }else{
@@ -195,7 +207,7 @@ public class Game {
         }
     }
 
-    public void saveLocal(Player p) {
+    private void saveLocal(Player p) {
         System.out.println("Saving...");
         File file = new File(".saves\\save-" + player.getName());
         FileWriter fileWriter = null;
@@ -220,7 +232,7 @@ public class Game {
         }
     }
 
-    public Player load() { 
+    private Player load() { 
         if(io.Choice("Load Local Save or from DB?", "local", "Database")==1){
              return PlayerFactory.localLoad(io);
         } 

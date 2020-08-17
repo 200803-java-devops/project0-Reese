@@ -4,6 +4,9 @@ import reeseBenson.revature.project0.Attack;
 import reeseBenson.revature.project0.Monster;
 
 public class Bubbla extends Monster {
+    /**
+     * Creates a new bubbla Monster
+     */
     public Bubbla(){
         super();
         name = "bubbla";
@@ -15,7 +18,9 @@ public class Bubbla extends Monster {
         attacks.add(new Attack("Bubble Burst", 10, 1));
         attacks.add(new Attack("Puff", 4, 3));
     }
-
+    /**
+     * Returns a new Bubbla
+     */
     public Monster createInstance(){
         return new Bubbla();
     }

@@ -15,6 +15,10 @@ public class Grid {
     HashMap<String, String> spaces;
     boolean MonsterCollision;
 
+    /**
+     * Creates a new 5 by 5 grid with the given Character at the center
+     * @param character The characters Face or Icon that will be in the center of the grid. Should be no more than 5 characters long, and 1 line in height.
+     */
     public Grid(String character) {
         innerHieght = 3;
         innerWidth = 7;
@@ -29,6 +33,11 @@ public class Grid {
         buildPrettyPrint();
     }
 
+    /**
+     *Creates a new 5 by 5 grid with the given Character at the center, and the given spaces filled with objects
+     * @param character The characters Face or Icon that will be in the center of the grid. Should be no more than 5 characters long, and 1 line in height. 
+     * @param spaces A map of coordiants in string form "1,1" to the string repersentation of the object ex: "M" present at said coordiant.
+     */
     public Grid(HashMap<String, String> spaces, String character) {
         innerHieght = 3;
         innerWidth = 7;
@@ -94,7 +103,12 @@ public class Grid {
         }
         return result;
     }
-
+    /**
+     * Moves the character in the provided directions using WSAD characters.
+     * The player will stay in the center of the grid but the spaces around the player will move.
+     * If the player Collides with an occupied space the monster collision flag is set.
+     * @param direction The direction the player will travel. w-up,s-down,a-left,d-right.
+     */
     public void Move(char direction) {
         Object[] keys = spaces.keySet().toArray();
         ArrayList<int[]> coords = new ArrayList<int[]>();
@@ -205,6 +219,9 @@ public class Grid {
         return coords;
     }
     
+    /**
+     * Adds a repersentation of a monster 'M' to the spaces hashmap in a random space.
+     */
     public void addMonster(){
         Random r = new Random();
         int row = r.nextInt(height);
@@ -214,11 +231,18 @@ public class Grid {
             spaces.put(key, "M");
         }
     }
-
+    /**
+     * Returns the Spaces hashmap.
+     * @return The Hashmap repersenting occupied spaces
+     */
     public HashMap<String, String> getSpaces() {
         return spaces;
     }
 
+    /**
+     * Returns a String prepared to print to the output stream.
+     * @return The String repersentation of the last action.
+     */
     public String getPrettyPrint() {
         return prettyPrint;
     }

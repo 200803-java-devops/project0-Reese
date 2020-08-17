@@ -1,6 +1,9 @@
 package reeseBenson.revature.project0;
 
 public class  Scutter extends Monster {
+    /**
+     * Returns a new Scutter
+     */
     Scutter(){
         super();
         name="Scutter";
@@ -12,7 +15,9 @@ public class  Scutter extends Monster {
         attacks.add(new Attack("Pinchers", 6, 3));
         attacks.add(new Attack("Scutter Around", 1, 5));
     }
-
+    /**
+     * Returns a new instance of this type
+     */
     public Monster createInstance(){
         return new Scutter();
     }

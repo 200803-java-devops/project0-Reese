@@ -4,6 +4,9 @@ import reeseBenson.revature.project0.Attack;
 import reeseBenson.revature.project0.Monster;
 
 public class Hissharp extends Monster {
+    /**
+     * Creates a new Hissharp
+     */
     public Hissharp(){
         super();
         name = "hissharp";
@@ -15,7 +18,9 @@ public class Hissharp extends Monster {
         attacks.add(new Attack("Pinchers", 6, 3));
         attacks.add(new Attack("Chop", 8, 1));
     }
-
+    /**
+     * Return a new Hissharp
+     */
     public Monster createInstance(){
         return new Hissharp();
     }

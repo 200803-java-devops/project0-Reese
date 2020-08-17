@@ -1,6 +1,9 @@
 package reeseBenson.revature.project0;
 
 public class  Skizard extends Monster {
+    /**
+     * Creates a new Skiizard
+     */
     Skizard(){
         super();
         name="Skizard";
@@ -13,6 +16,9 @@ public class  Skizard extends Monster {
         attacks.add(new Attack("Headbut", 4, 3));
     }
 
+    /**
+     * Returns a new instance of a skizard
+     */
     public Monster createInstance(){
         return new Skizard();
     }

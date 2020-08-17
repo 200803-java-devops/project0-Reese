@@ -4,6 +4,9 @@ import reeseBenson.revature.project0.Attack;
 import reeseBenson.revature.project0.Monster;
 
 public class Squidle extends Monster {
+    /**
+     * Creates a new squidle
+     */
     public Squidle (){
         super();
         name = "squidle";
@@ -15,7 +18,9 @@ public class Squidle extends Monster {
         attacks.add(new Attack("Ink Gun", 2, 10));
         attacks.add(new Attack("Watter Squirt", 8, 2));
     }
-
+    /**
+     * Returns a new Squidle
+     */
     public Monster createInstance(){
         return new Bubbla();
     }

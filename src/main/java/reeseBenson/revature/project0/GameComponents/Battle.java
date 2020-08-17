@@ -14,6 +14,12 @@ public class Battle {
     Actor player;
     MyIO io;
 
+    /**
+     * Creates a new Battle object.
+     * @param player THe Actor that will act first
+     * @param enemy The actor that will act Second
+     * @param io The battles primary output and input stream handler
+     */
     public Battle(Actor player, Actor enemy, MyIO io) {
         this.player = player;
         this.enemy = enemy;
@@ -22,6 +28,10 @@ public class Battle {
         enemyMonster = enemy.selectMonster();
     }
 
+    /**
+     * Starts a new battle, by printing to the output Stream and accepting play inputs.
+     * Reports the winner of the battle when the oposing players monster reaches 0 hit points.
+     */
     public void Start() {
         while (true) {
             printStage();
@@ -46,7 +56,7 @@ public class Battle {
         enemyMonster.refresh();
     }
 
-    public void printStage() {
+    private void printStage() {
         String[] myArt = playerMonster.getArt().split("\n");
         String[] enemyArt = enemyMonster.getArt().split("\n");
         enemyMonster.getArt().split("\n");
